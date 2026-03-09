@@ -1,0 +1,22 @@
+
+[package]
+name = "surrealdb-docs-mcp"
+version = "0.0.1"
+edition = "2024"
+description = "MCP server for SurrealDB documentation (unofficial)"
+license = "MIT"
+repository = "https://github.com/Nkr1shna/surrealdb-docs-mcp"
+readme = "README.md"
+keywords = ["mcp", "surrealdb", "docs"]
+categories = ["command-line-utilities"]
+exclude = ["vendor/**", "target/**"]
+
+[dependencies]
+reqwest = { version = "0.12.23", default-features = false, features = ["json", "rustls-tls"] }
+rmcp = { version = "1.1.1", features = ["transport-io"] }
+serde = { version = "1.0.219", features = ["derive"] }
+tokio = { version = "1.47.1", features = ["macros", "rt-multi-thread", "time"] }
+url = "2.5.7"
+
+
+
