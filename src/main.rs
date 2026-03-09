@@ -215,7 +215,7 @@ impl SurrealDocsServer {
 impl SurrealDocsServer {
     #[tool(
         name = "search_docs",
-        description = "Search SurrealDB documentation using the same hosted search index as the docs site and return ranked results."
+        description = "Search SurrealDB documentation and return ranked results with URLs. Use this first to find relevant pages, then pass a returned URL or path to fetch_doc to get the full content."
     )]
     async fn search_docs(
         &self,
@@ -235,7 +235,7 @@ impl SurrealDocsServer {
 
     #[tool(
         name = "fetch_doc",
-        description = "Retrieve the full content of a SurrealDB doc page from the cached local docs repository."
+        description = "Retrieve the full markdown content of a SurrealDB documentation page. Accepts either an absolute URL (https://surrealdb.com/docs/...) or a relative path (/docs/...) returned by search_docs."
     )]
     async fn fetch_doc(
         &self,
@@ -255,7 +255,7 @@ impl ServerHandler for SurrealDocsServer {
                 env!("CARGO_PKG_VERSION"),
             ))
             .with_instructions(
-                "Use search_docs for ranked SurrealDB documentation search via the hosted docs index and fetch_doc to read the backing file from the local docs repository cache.",
+                "To answer SurrealDB questions: (1) call search_docs with relevant keywords to find matching pages, (2) call fetch_doc with the URL from the results to read the full content. Prefer fetch_doc over summarizing search snippets.",
             )
     }
 }
