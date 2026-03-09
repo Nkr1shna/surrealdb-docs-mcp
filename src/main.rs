@@ -65,7 +65,7 @@ struct SearchDocsRequest {
 #[derive(Debug, Deserialize, JsonSchema)]
 struct FetchDocRequest {
     #[schemars(
-        description = "Absolute SurrealDB docs URL or relative path returned by search_docs, for example /docs/surrealdb/embedding."
+        description = "Relative path returned by search_docs, for example /docs/surrealdb/embedding."
     )]
     url: String,
 }
@@ -235,7 +235,7 @@ impl SurrealDocsServer {
 
     #[tool(
         name = "fetch_doc",
-        description = "Retrieve the full markdown content of a SurrealDB documentation page. Accepts either an absolute URL (https://surrealdb.com/docs/...) or a relative path (/docs/...) returned by search_docs."
+        description = "Retrieve the full markdown content of a SurrealDB documentation page. Pass a relative path (/docs/...) returned by search_docs."
     )]
     async fn fetch_doc(
         &self,
